@@ -1,0 +1,32 @@
+,0,Ticker symbol,Security,SEC filings,GICS Sector,GICS Sub Industry,Address of Headquarters,Date first added,CIK
+0,5,ATVI,Activision Blizzard,reports,Information Technology,Home Entertainment Software,"Santa Monica, California",2015-08-31,0000718877
+1,7,ADBE,Adobe Systems Inc,reports,Information Technology,Application Software,"San Jose, California",1997-05-05,0000796343
+2,16,AKAM,Akamai Technologies Inc,reports,Information Technology,Internet Software & Services,"Cambridge, Massachusetts",2007-07-12,0001086222
+3,27,GOOGL,Alphabet Inc Class A,reports,Information Technology,Internet Software & Services,"Mountain View, California",2014-04-03,0001652044
+4,28,GOOG,Alphabet Inc Class C,reports,Information Technology,Internet Software & Services,"Mountain View, California",,0001652044
+5,46,ANSS,ANSYS,reports,Information Technology,Application Software,"Canonsburg, Pennsylvania",2017-06-19,0001013462
+6,60,ADSK,Autodesk Inc,reports,Information Technology,Application Software,"San Rafael, California",1989-12-01,0000769397
+7,61,ADP,Automatic Data Processing,reports,Information Technology,Internet Software & Services,"Roseland, New Jersey",1981-03-31,0000008670
+8,86,CA,"CA, Inc.",reports,Information Technology,Systems Software,"Islandia, New York",1987-07-31,0000356028
+9,88,CDNS,Cadence Design Systems,reports,Information Technology,Application Software,"San Jose, California",2017-09-18,0000813672
+10,118,CTXS,Citrix Systems,reports,Information Technology,Internet Software & Services,"Fort Lauderdale, Florida",,0000877890
+11,167,EBAY,eBay Inc.,reports,Information Technology,Internet Software & Services,"San Jose, California",,0001065088
+12,171,EA,Electronic Arts,reports,Information Technology,Home Entertainment Software,"Redwood City, California",2002-07-22,0000712515
+13,191,FB,"Facebook, Inc.",reports,Information Technology,Internet Software & Services,"Menlo Park, California",2013-12-23,0001326801
+14,195,FIS,Fidelity National Information Services,reports,Information Technology,Internet Software & Services,"Jacksonville, Florida",2006-11-10,0001136893
+15,198,FISV,Fiserv Inc,reports,Information Technology,Internet Software & Services,"Brookfield, Wisconsin",2001-04-02,0000798354
+16,258,INTU,Intuit Inc.,reports,Information Technology,Internet Software & Services,"Mountain View, California",2000-12-05,0000896878
+17,303,MA,Mastercard Inc.,reports,Information Technology,Internet Software & Services,"Harrison, New York",2008-07-18,0001141391
+18,316,MSFT,Microsoft Corp.,reports,Information Technology,Systems Software,"Redmond, Washington",1994-06-01,0000789019
+19,331,NTAP,NetApp,reports,Information Technology,Internet Software & Services,"Sunnyvale, California",1999-06-25,0001002047
+20,332,NFLX,Netflix Inc.,reports,Information Technology,Internet Software & Services,"Los Gatos, California",2010-12-20,0001065280
+21,355,ORCL,Oracle Corp.,reports,Information Technology,Application Software,"Redwood Shores, California",1989-08-31,0001341439
+22,360,PAYX,Paychex Inc.,reports,Information Technology,Internet Software & Services,"Penfield, New York",,0000723531
+23,396,RHT,Red Hat Inc.,reports,Information Technology,Systems Software,"Raleigh, North Carolina",2009-07-27,0001087423
+24,408,CRM,Salesforce.com,reports,Information Technology,Internet Software & Services,"San Francisco, California",2008-09-15,0001108524
+25,431,SYMC,Symantec Corp.,reports,Information Technology,Application Software,"Mountain View, California",2003-03-25,0000849399
+26,433,SNPS,Synopsys Inc.,reports,Information Technology,Application Software,"Mountain View, California",2017-03-16,0000883241
+27,447,TSS,Total System Services,reports,Information Technology,Internet Software & Services,"Columbus, Georgia",2008-01-02,0000721683
+28,472,VRSN,Verisign Inc.,reports,Information Technology,Internet Software & Services,"Dulles, Virginia",2006-02-01,0001014473
+29,477,V,Visa Inc.,reports,Information Technology,Internet Software & Services,"San Francisco, California",2009-12-21,0001403161
+30,489,WU,Western Union Co,reports,Information Technology,Internet Software & Services,"Englewood, Colorado",,0001365135

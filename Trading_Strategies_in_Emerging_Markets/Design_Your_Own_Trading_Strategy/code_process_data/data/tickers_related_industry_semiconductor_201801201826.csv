@@ -1,0 +1,16 @@
+,0,Ticker symbol,Security,SEC filings,GICS Sector,GICS Sub Industry,Address of Headquarters,Date first added,CIK
+0,8,AMD,Advanced Micro Devices Inc,reports,Information Technology,Semiconductors,"Sunnyvale, California",2017-03-20,0000002488
+1,44,ADI,"Analog Devices, Inc.",reports,Information Technology,Semiconductors,"Norwood, Massachusetts",,0000006281
+2,53,AMAT,Applied Materials Inc,reports,Information Technology,Semiconductor Equipment,"Santa Clara, California",,0000006951
+3,83,AVGO,Broadcom,reports,Information Technology,Semiconductors,"San Jose, California",2014-05-08,0001441634
+4,251,INTC,Intel Corp.,reports,Information Technology,Semiconductors,"Santa Clara, California",1976-12-31,0000050863
+5,276,KLAC,KLA-Tencor Corp.,reports,Information Technology,Semiconductor Equipment,"Milpitas, California",,0000319201
+6,283,LRCX,Lam Research,reports,Information Technology,Semiconductor Equipment,"Fremont, California",2012-06-29,0000707549
+7,314,MCHP,Microchip Technology,reports,Information Technology,Semiconductors,"Chandler, Arizona",2007-09-07,0000827054
+8,315,MU,Micron Technology,reports,Information Technology,Semiconductors,"Boise, Idaho",1994-09-27,0000723125
+9,350,NVDA,Nvidia Corporation,reports,Information Technology,Semiconductors,"Santa Clara, California",2001-11-30,0001045810
+10,388,QRVO,Qorvo,reports,Information Technology,Semiconductors,"Greensboro, North Carolina",2015-06-11,0001604778
+11,390,QCOM,QUALCOMM Inc.,reports,Information Technology,Semiconductors,"San Diego, California",,0000804328
+12,419,SWKS,Skyworks Solutions,reports,Information Technology,Semiconductors,"Woburn, Massachusetts",2015-03-12,0000004127
+13,440,TXN,Texas Instruments,reports,Information Technology,Semiconductors,"Dallas, Texas",,0000097476
+14,499,XLNX,Xilinx Inc,reports,Information Technology,Semiconductors,"San Jose, California",1999-11-08,0000743988
