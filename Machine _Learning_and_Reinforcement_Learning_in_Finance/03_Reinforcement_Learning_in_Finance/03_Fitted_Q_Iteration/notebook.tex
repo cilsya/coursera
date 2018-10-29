@@ -1,0 +1,1710 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{dp\_qlbs\_oneset\_m3\_ex3\_v4}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Fitted Q-iteration}\label{fitted-q-iteration}
+
+Welcome to your 3rd assignment in Reinforcement Learning in Finance. In
+this exercise you will take the most popular extension of Q-Learning to
+a batch RL setting called Fitted Q-Iteration.
+
+\textbf{Instructions:} - You will be using Python 3. - Avoid using
+for-loops and while-loops, unless you are explicitly told to do so. - Do
+not modify the (\# GRADED FUNCTION {[}function name{]}) comment in some
+cells. Your work would not be graded if you change this. Each cell
+containing that comment should only contain one function. - After coding
+your function, run the cell right below it to check if your result is
+correct. - When encountering
+\textbf{\texttt{\#\ dummy\ code\ -\ remove}} please replace this code
+with your own
+
+\textbf{After this assignment you will:} - Setup inputs for batch-RL
+model - Implement Fitted Q-Iteration
+
+Let's get started!
+
+    \subsection{About iPython Notebooks}\label{about-ipython-notebooks}
+
+iPython Notebooks are interactive coding environments embedded in a
+webpage. You will be using iPython notebooks in this class. You only
+need to write code between the \#\#\# START CODE HERE \#\#\# and \#\#\#
+END CODE HERE \#\#\# comments. After writing your code, you can run the
+cell by either pressing "SHIFT"+"ENTER" or by clicking on "Run Cell"
+(denoted by a play symbol) in the upper bar of the notebook.
+
+We will often specify "(≈ X lines of code)" in the comments to tell you
+about how much code you need to write. It is just a rough estimate, so
+don't feel bad if your code is longer or shorter.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{norm}
+        \PY{k+kn}{import} \PY{n+nn}{random}
+        
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        
+        \PY{n}{sys}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{..}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k+kn}{import} \PY{n+nn}{grading}
+        
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} ONLY FOR GRADING. DO NOT EDIT \PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{n}{submissions}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+        \PY{n}{assignment\PYZus{}key}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{0jn7tioiEeiBAA49aGvLAg}\PY{l+s+s2}{\PYZdq{}} 
+        \PY{n}{all\PYZus{}parts}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{wrZFS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{yqg6m}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{KY5p8}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BsRWi}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pWxky}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} ONLY FOR GRADING. DO NOT EDIT \PYZsh{}\PYZsh{}\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{COURSERA\PYZus{}TOKEN} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mxzwbbOi9yVinyJa}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} the key provided to the Student under his/her email on submission page}
+        \PY{n}{COURSERA\PYZus{}EMAIL} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cilsya@yahoo.com}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} the email}
+\end{Verbatim}
+
+
+    \subsection{Parameters for MC simulation of stock
+prices}\label{parameters-for-mc-simulation-of-stock-prices}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{S0} \PY{o}{=} \PY{l+m+mi}{100}      \PY{c+c1}{\PYZsh{} initial stock price}
+        \PY{n}{mu} \PY{o}{=} \PY{l+m+mf}{0.05}     \PY{c+c1}{\PYZsh{} drift}
+        \PY{n}{sigma} \PY{o}{=} \PY{l+m+mf}{0.15}  \PY{c+c1}{\PYZsh{} volatility}
+        \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{0.03}      \PY{c+c1}{\PYZsh{} risk\PYZhy{}free rate}
+        \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{1}         \PY{c+c1}{\PYZsh{} maturity}
+        \PY{n}{T} \PY{o}{=} \PY{l+m+mi}{6}        \PY{c+c1}{\PYZsh{} number of time steps}
+        
+        \PY{n}{N\PYZus{}MC} \PY{o}{=} \PY{l+m+mi}{10000} \PY{c+c1}{\PYZsh{} 10000 \PYZsh{} 50000   \PYZsh{} number of paths}
+        
+        \PY{n}{delta\PYZus{}t} \PY{o}{=} \PY{n}{M} \PY{o}{/} \PY{n}{T}                \PY{c+c1}{\PYZsh{} time interval}
+        \PY{n}{gamma} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}} \PY{n}{r} \PY{o}{*} \PY{n}{delta\PYZus{}t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} discount factor}
+\end{Verbatim}
+
+
+    \subsubsection{Black-Sholes Simulation}\label{black-sholes-simulation}
+
+Simulate \(N_{MC}\) stock price sample paths with \(T\) steps by the
+classical Black-Sholes formula.
+
+\[dS_t=\mu S_tdt+\sigma S_tdW_t\quad\quad S_{t+1}=S_te^{\left(\mu-\frac{1}{2}\sigma^2\right)\Delta t+\sigma\sqrt{\Delta t}Z}\]
+
+where \(Z\) is a standard normal random variable.
+
+Based on simulated stock price \(S_t\) paths, compute state variable
+\(X_t\) by the following relation.
+
+\[X_t=-\left(\mu-\frac{1}{2}\sigma^2\right)t\Delta t+\log S_t\]
+
+Also compute
+
+\[\Delta S_t=S_{t+1}-e^{r\Delta t}S_t\quad\quad \Delta\hat{S}_t=\Delta S_t-\Delta\bar{S}_t\quad\quad t=0,...,T-1\]
+
+where \(\Delta\bar{S}_t\) is the sample mean of all values of
+\(\Delta S_t\).
+
+Plots of 5 stock price \(S_t\) and state variable \(X_t\) paths are
+shown below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} make a dataset }
+        
+        \PY{n}{starttime} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)} \PY{c+c1}{\PYZsh{} Fix random seed}
+        \PY{c+c1}{\PYZsh{} stock price}
+        \PY{n}{S} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        \PY{n}{S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{S0}
+        
+        \PY{c+c1}{\PYZsh{} standard normal random numbers}
+        \PY{n}{RN} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{N\PYZus{}MC}\PY{p}{,}\PY{n}{T}\PY{p}{)}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+            \PY{n}{S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{delta\PYZus{}t} \PY{o}{+} \PY{n}{sigma} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{delta\PYZus{}t}\PY{p}{)} \PY{o}{*} \PY{n}{RN}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{delta\PYZus{}S} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{T}\PY{p}{]}\PY{o}{.}\PY{n}{values} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{r} \PY{o}{*} \PY{n}{delta\PYZus{}t}\PY{p}{)} \PY{o}{*} \PY{n}{S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{delta\PYZus{}S\PYZus{}hat} \PY{o}{=} \PY{n}{delta\PYZus{}S}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} state variable}
+        \PY{n}{X} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{delta\PYZus{}t} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S}\PY{p}{)}   \PY{c+c1}{\PYZsh{} delta\PYZus{}t here is due to their conventions}
+        
+        \PY{n}{endtime} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Time Cost:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{endtime} \PY{o}{\PYZhy{}} \PY{n}{starttime}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} plot 10 paths}
+        \PY{n}{step\PYZus{}size} \PY{o}{=} \PY{n}{N\PYZus{}MC} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{10}
+        \PY{n}{idx\PYZus{}plot} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{step\PYZus{}size}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{p}{,} \PY{n}{step\PYZus{}size}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Stock Price Sample Paths}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{State Variable}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Time Cost: 0.05500006675720215 seconds
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Define function \emph{terminal\_payoff} to compute the terminal payoff
+of a European put option.
+
+\[H_T\left(S_T\right)=\max\left(K-S_T,0\right)\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{terminal\PYZus{}payoff}\PY{p}{(}\PY{n}{ST}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} ST   final stock price}
+            \PY{c+c1}{\PYZsh{} K    strike}
+            \PY{n}{payoff} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{K}\PY{o}{\PYZhy{}}\PY{n}{ST}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+            \PY{k}{return} \PY{n}{payoff}
+\end{Verbatim}
+
+
+    \subsection{Define spline basis
+functions}\label{define-spline-basis-functions}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{import} \PY{n+nn}{bspline}
+        \PY{k+kn}{import} \PY{n+nn}{bspline}\PY{n+nn}{.}\PY{n+nn}{splinelab} \PY{k}{as} \PY{n+nn}{splinelab}
+        
+        \PY{n}{X\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+        \PY{n}{X\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X.shape = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}min, X\PYZus{}max = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{X\PYZus{}min}\PY{p}{,} \PY{n}{X\PYZus{}max}\PY{p}{)}
+        
+        \PY{n}{p} \PY{o}{=} \PY{l+m+mi}{4}              \PY{c+c1}{\PYZsh{} order of spline (as\PYZhy{}is; 3 = cubic, 4: B\PYZhy{}spline?)}
+        \PY{n}{ncolloc} \PY{o}{=} \PY{l+m+mi}{12}
+        
+        \PY{n}{tau} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{X\PYZus{}min}\PY{p}{,}\PY{n}{X\PYZus{}max}\PY{p}{,}\PY{n}{ncolloc}\PY{p}{)}  \PY{c+c1}{\PYZsh{} These are the sites to which we would like to interpolate}
+        
+        \PY{c+c1}{\PYZsh{} k is a knot vector that adds endpoints repeats as appropriate for a spline of order p}
+        \PY{c+c1}{\PYZsh{} To get meaninful results, one should have ncolloc \PYZgt{}= p+1}
+        \PY{n}{k} \PY{o}{=} \PY{n}{splinelab}\PY{o}{.}\PY{n}{aptknt}\PY{p}{(}\PY{n}{tau}\PY{p}{,} \PY{n}{p}\PY{p}{)} 
+                                     
+        \PY{c+c1}{\PYZsh{} Spline basis of order p on knots k}
+        \PY{n}{basis} \PY{o}{=} \PY{n}{bspline}\PY{o}{.}\PY{n}{Bspline}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{p}\PY{p}{)}        
+        \PY{n}{f} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} B   = bspline.Bspline(k, p)     \PYZsh{} Spline basis functions }
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of points k = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{)}
+        \PY{n}{basis}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Basis\PYZus{}functions.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+X.shape =  (10000, 7)
+X\_min, X\_max =  4.057527970756566 5.162066529170717
+Number of points k =  17
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+    \begin{verbatim}
+<Figure size 432x288 with 0 Axes>
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n+nb}{type}\PY{p}{(}\PY{n}{basis}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} bspline.bspline.Bspline
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{X}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} (10000, 7)
+\end{Verbatim}
+            
+    \subsubsection{Make data matrices with feature
+values}\label{make-data-matrices-with-feature-values}
+
+"Features" here are the values of basis functions at data points The
+outputs are 3D arrays of dimensions num\_tSteps x num\_MC x num\_basis
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{num\PYZus{}t\PYZus{}steps} \PY{o}{=} \PY{n}{T} \PY{o}{+} \PY{l+m+mi}{1}
+         \PY{n}{num\PYZus{}basis} \PY{o}{=}  \PY{n}{ncolloc} \PY{c+c1}{\PYZsh{} len(k) \PYZsh{}}
+         
+         \PY{n}{data\PYZus{}mat\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{num\PYZus{}t\PYZus{}steps}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{p}{,}\PY{n}{num\PYZus{}basis} \PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{num\PYZus{}basis = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{num\PYZus{}basis}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dim data\PYZus{}mat\PYZus{}t = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} fill it, expand function in finite dimensional space}
+         \PY{c+c1}{\PYZsh{} in neural network the basis is the neural network itself}
+         \PY{n}{t\PYZus{}0} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{num\PYZus{}t\PYZus{}steps}\PY{p}{)}\PY{p}{:}
+             \PY{n}{x} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+             \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[} \PY{n}{basis}\PY{p}{(}\PY{n}{el}\PY{p}{)} \PY{k}{for} \PY{n}{el} \PY{o+ow}{in} \PY{n}{x} \PY{p}{]}\PY{p}{)}
+          
+         \PY{n}{t\PYZus{}end} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Computational time:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t\PYZus{}end} \PY{o}{\PYZhy{}} \PY{n}{t\PYZus{}0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+num\_basis =  12
+dim data\_mat\_t =  (7, 10000, 12)
+Computational time: 14.045999765396118 seconds
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} save these data matrices for future re\PYZhy{}use}
+         \PY{n}{np}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data\PYZus{}mat\PYZus{}m=r\PYZus{}A\PYZus{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{N\PYZus{}MC}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{data\PYZus{}mat\PYZus{}t}\PY{o}{.}\PY{n}{shape}\PY{p}{)}  \PY{c+c1}{\PYZsh{} shape num\PYZus{}steps x N\PYZus{}MC x num\PYZus{}basis}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(7, 10000, 12)
+17
+
+    \end{Verbatim}
+
+    \subsection{Dynamic Programming solution for
+QLBS}\label{dynamic-programming-solution-for-qlbs}
+
+The MDP problem in this case is to solve the following Bellman
+optimality equation for the action-value function.
+
+\[Q_t^\star\left(x,a\right)=\mathbb{E}_t\left[R_t\left(X_t,a_t,X_{t+1}\right)+\gamma\max_{a_{t+1}\in\mathcal{A}}Q_{t+1}^\star\left(X_{t+1},a_{t+1}\right)\space|\space X_t=x,a_t=a\right],\space\space t=0,...,T-1,\quad\gamma=e^{-r\Delta t}\]
+
+where \(R_t\left(X_t,a_t,X_{t+1}\right)\) is the one-step time-dependent
+random reward and \(a_t\left(X_t\right)\) is the action (hedge).
+
+Detailed steps of solving this equation by Dynamic Programming are
+illustrated below.
+
+    With this set of basis functions
+\(\left\{\Phi_n\left(X_t^k\right)\right\}_{n=1}^N\), expand the optimal
+action (hedge) \(a_t^\star\left(X_t\right)\) and optimal Q-function
+\(Q_t^\star\left(X_t,a_t^\star\right)\) in basis functions with
+time-dependent coefficients.
+\[a_t^\star\left(X_t\right)=\sum_n^N{\phi_{nt}\Phi_n\left(X_t\right)}\quad\quad Q_t^\star\left(X_t,a_t^\star\right)=\sum_n^N{\omega_{nt}\Phi_n\left(X_t\right)}\]
+
+Coefficients \(\phi_{nt}\) and \(\omega_{nt}\) are computed recursively
+backward in time for \(t=T−1,...,0\).
+
+    Coefficients for expansions of the optimal action
+\(a_t^\star\left(X_t\right)\) are solved by
+
+\[\phi_t=\mathbf A_t^{-1}\mathbf B_t\]
+
+where \(\mathbf A_t\) and \(\mathbf B_t\) are matrix and vector
+respectively with elements given by
+
+\[A_{nm}^{\left(t\right)}=\sum_{k=1}^{N_{MC}}{\Phi_n\left(X_t^k\right)\Phi_m\left(X_t^k\right)\left(\Delta\hat{S}_t^k\right)^2}\quad\quad B_n^{\left(t\right)}=\sum_{k=1}^{N_{MC}}{\Phi_n\left(X_t^k\right)\left[\hat\Pi_{t+1}^k\Delta\hat{S}_t^k+\frac{1}{2\gamma\lambda}\Delta S_t^k\right]}\]
+
+Define function \emph{function\_A} and \emph{function\_B} to compute the
+value of matrix \(\mathbf A_t\) and vector \(\mathbf B_t\).
+
+    \subsection{Define the option strike and risk aversion
+parameter}\label{define-the-option-strike-and-risk-aversion-parameter}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{risk\PYZus{}lambda} \PY{o}{=} \PY{l+m+mf}{0.001} \PY{c+c1}{\PYZsh{} 0.001 \PYZsh{} 0.0001            \PYZsh{} risk aversion}
+         \PY{n}{K} \PY{o}{=} \PY{l+m+mi}{100} \PY{c+c1}{\PYZsh{} }
+         
+         \PY{c+c1}{\PYZsh{} Note that we set coef=0 below in function function\PYZus{}B\PYZus{}vec. This correspond to a pure risk\PYZhy{}based hedging}
+\end{Verbatim}
+
+
+    \subsection{Part 1: Implement functions to compute optimal
+hedges}\label{part-1-implement-functions-to-compute-optimal-hedges}
+
+\textbf{Instructions:} Copy-paste implementations from the previous
+assignment, i.e. QLBS as these are the same functions
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} functions to compute optimal hedges}
+         \PY{k}{def} \PY{n+nf}{function\PYZus{}A\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{p}{,} \PY{n}{data\PYZus{}mat}\PY{p}{,} \PY{n}{reg\PYZus{}param}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    function\PYZus{}A\PYZus{}vec \PYZhy{} compute the matrix A\PYZus{}\PYZob{}nm\PYZcb{} from Eq. (52) (with a regularization!)}
+         \PY{l+s+sd}{    Eq. (52) in QLBS Q\PYZhy{}Learner in the Black\PYZhy{}Scholes\PYZhy{}Merton article}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Arguments:}
+         \PY{l+s+sd}{    t \PYZhy{} time index, a scalar, an index into time axis of data\PYZus{}mat}
+         \PY{l+s+sd}{    delta\PYZus{}S\PYZus{}hat \PYZhy{} pandas.DataFrame of dimension N\PYZus{}MC x T}
+         \PY{l+s+sd}{    data\PYZus{}mat \PYZhy{} pandas.DataFrame of dimension T x N\PYZus{}MC x num\PYZus{}basis}
+         \PY{l+s+sd}{    reg\PYZus{}param \PYZhy{} a scalar, regularization parameter}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Return:}
+         \PY{l+s+sd}{    \PYZhy{} np.array, i.e. matrix A\PYZus{}\PYZob{}nm\PYZcb{} of dimension num\PYZus{}basis x num\PYZus{}basis}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 5\PYZhy{}6 lines of code)}
+             \PY{c+c1}{\PYZsh{} A\PYZus{}mat = your code goes here ...}
+             \PY{n}{X\PYZus{}mat} \PY{o}{=} \PY{n}{data\PYZus{}mat}\PY{p}{[}\PY{n}{t}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{num\PYZus{}basis\PYZus{}funcs} \PY{o}{=} \PY{n}{X\PYZus{}mat}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{this\PYZus{}dS} \PY{o}{=} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{p}{]}
+             \PY{n}{hat\PYZus{}dS2} \PY{o}{=} \PY{p}{(}\PY{n}{this\PYZus{}dS} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{A\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X\PYZus{}mat}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{X\PYZus{}mat} \PY{o}{*} \PY{n}{hat\PYZus{}dS2}\PY{p}{)} \PY{o}{+} \PY{n}{reg\PYZus{}param} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{num\PYZus{}basis\PYZus{}funcs}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+             \PY{k}{return} \PY{n}{A\PYZus{}mat}
+         
+         \PY{k}{def} \PY{n+nf}{function\PYZus{}B\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,}
+                            \PY{n}{Pi\PYZus{}hat}\PY{p}{,} 
+                            \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{o}{=}\PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{p}{,}
+                            \PY{n}{S}\PY{o}{=}\PY{n}{S}\PY{p}{,}
+                            \PY{n}{data\PYZus{}mat}\PY{o}{=}\PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{,}
+                            \PY{n}{gamma}\PY{o}{=}\PY{n}{gamma}\PY{p}{,}
+                            \PY{n}{risk\PYZus{}lambda}\PY{o}{=}\PY{n}{risk\PYZus{}lambda}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    function\PYZus{}B\PYZus{}vec \PYZhy{} compute vector B\PYZus{}\PYZob{}n\PYZcb{} from Eq. (52) QLBS Q\PYZhy{}Learner in the Black\PYZhy{}Scholes\PYZhy{}Merton article}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Arguments:}
+         \PY{l+s+sd}{    t \PYZhy{} time index, a scalar, an index into time axis of delta\PYZus{}S\PYZus{}hat}
+         \PY{l+s+sd}{    Pi\PYZus{}hat \PYZhy{} pandas.DataFrame of dimension N\PYZus{}MC x T of portfolio values }
+         \PY{l+s+sd}{    delta\PYZus{}S\PYZus{}hat \PYZhy{} pandas.DataFrame of dimension N\PYZus{}MC x T}
+         \PY{l+s+sd}{    S \PYZhy{} pandas.DataFrame of simulated stock prices}
+         \PY{l+s+sd}{    data\PYZus{}mat \PYZhy{} pandas.DataFrame of dimension T x N\PYZus{}MC x num\PYZus{}basis}
+         \PY{l+s+sd}{    gamma \PYZhy{} one time\PYZhy{}step discount factor \PYZdl{}exp(\PYZhy{}r \PYZbs{}delta t)\PYZdl{}}
+         \PY{l+s+sd}{    risk\PYZus{}lambda \PYZhy{} risk aversion coefficient, a small positive number}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Return:}
+         \PY{l+s+sd}{    B\PYZus{}vec \PYZhy{} np.array() of dimension num\PYZus{}basis x 1}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{} coef = 1.0/(2 * gamma * risk\PYZus{}lambda)}
+             \PY{c+c1}{\PYZsh{} override it by zero to have pure risk hedge}
+             \PY{n}{coef} \PY{o}{=} \PY{l+m+mf}{0.} \PY{c+c1}{\PYZsh{} keep it}
+             
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 3\PYZhy{}4 lines of code)}
+             \PY{c+c1}{\PYZsh{} B\PYZus{}vec = your code goes here ...}
+             \PY{n}{tmp} \PY{o}{=} \PY{n}{Pi\PYZus{}hat}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{p}{]}
+             \PY{n}{X\PYZus{}mat} \PY{o}{=} \PY{n}{data\PYZus{}mat}\PY{p}{[}\PY{n}{t}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}  \PY{c+c1}{\PYZsh{} matrix of dimension N\PYZus{}MC x num\PYZus{}basis}
+             \PY{n}{B\PYZus{}vec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X\PYZus{}mat}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{tmp}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+           
+             \PY{k}{return} \PY{n}{B\PYZus{}vec}
+\end{Verbatim}
+
+
+    \subsection{Compute optimal hedge and portfolio
+value}\label{compute-optimal-hedge-and-portfolio-value}
+
+    Call \emph{function\_A} and \emph{function\_B} for \(t=T-1,...,0\)
+together with basis function \(\Phi_n\left(X_t\right)\) to compute
+optimal action
+\(a_t^\star\left(X_t\right)=\sum_n^N{\phi_{nt}\Phi_n\left(X_t\right)}\)
+backward recursively with terminal condition
+\(a_T^\star\left(X_T\right)=0\).
+
+Once the optimal hedge \(a_t^\star\left(X_t\right)\) is computed, the
+portfolio value \(\Pi_t\) could also be computed backward recursively by
+
+\[\Pi_t=\gamma\left[\Pi_{t+1}-a_t^\star\Delta S_t\right]\quad t=T-1,...,0\]
+
+together with the terminal condition
+\(\Pi_T=H_T\left(S_T\right)=\max\left(K-S_T,0\right)\) for a European
+put option.
+
+Also compute \(\hat{\Pi}_t=\Pi_t-\bar{\Pi}_t\), where \(\bar{\Pi}_t\) is
+the sample mean of all values of \(\Pi_t\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{starttime} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} portfolio value}
+         \PY{n}{Pi} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{terminal\PYZus{}payoff}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{Pi\PYZus{}hat} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Pi\PYZus{}hat}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} optimal hedge}
+         \PY{n}{a} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{a}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+         
+         \PY{n}{reg\PYZus{}param} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}
+         \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             \PY{n}{A\PYZus{}mat} \PY{o}{=} \PY{n}{function\PYZus{}A\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{,} \PY{n}{reg\PYZus{}param}\PY{p}{)}
+             \PY{n}{B\PYZus{}vec} \PY{o}{=} \PY{n}{function\PYZus{}B\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{Pi\PYZus{}hat}\PY{p}{,} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{} print (\PYZsq{}t =  A\PYZus{}mat.shape = B\PYZus{}vec.shape = \PYZsq{}, t, A\PYZus{}mat.shape, B\PYZus{}vec.shape)}
+             \PY{n}{phi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{A\PYZus{}mat}\PY{p}{)}\PY{p}{,} \PY{n}{B\PYZus{}vec}\PY{p}{)}
+         
+             \PY{n}{a}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{[}\PY{n}{t}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{phi}\PY{p}{)}
+             \PY{n}{Pi}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{gamma} \PY{o}{*} \PY{p}{(}\PY{n}{Pi}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{a}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{*} \PY{n}{delta\PYZus{}S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+             \PY{n}{Pi\PYZus{}hat}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{Pi}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{Pi}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{a} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{Pi} \PY{o}{=} \PY{n}{Pi}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{Pi\PYZus{}hat} \PY{o}{=} \PY{n}{Pi\PYZus{}hat}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{endtime} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Computational time:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{endtime} \PY{o}{\PYZhy{}} \PY{n}{starttime}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Computational time: 0.08799982070922852 seconds
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+D:\textbackslash{}application\textbackslash{}Anaconda3\textbackslash{}envs\textbackslash{}pyalgo\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:21: FutureWarning: reshape is deprecated and will raise in a subsequent release. Please use .values.reshape({\ldots}) instead
+
+    \end{Verbatim}
+
+    Plots of 5 optimal hedge \(a_t^\star\) and portfolio value \(\Pi_t\)
+paths are shown below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} plot 10 paths}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{a}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Optimal Hedge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Pi}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Portfolio Value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Once the optimal hedge \(a_t^\star\) and portfolio value \(\Pi_t\) are
+all computed, the reward function \(R_t\left(X_t,a_t,X_{t+1}\right)\)
+could then be computed by
+
+\[R_t\left(X_t,a_t,X_{t+1}\right)=\gamma a_t\Delta S_t-\lambda Var\left[\Pi_t\space|\space\mathcal F_t\right]\quad t=0,...,T-1\]
+
+with terminal condition \(R_T=-\lambda Var\left[\Pi_T\right]\).
+
+Plot of 5 reward function \(R_t\) paths is shown below.
+
+    \subsection{Part 2: Compute the optimal Q-function with the DP
+approach}\label{part-2-compute-the-optimal-q-function-with-the-dp-approach}
+
+    Coefficients for expansions of the optimal Q-function
+\(Q_t^\star\left(X_t,a_t^\star\right)\) are solved by
+
+\[\omega_t=\mathbf C_t^{-1}\mathbf D_t\]
+
+where \(\mathbf C_t\) and \(\mathbf D_t\) are matrix and vector
+respectively with elements given by
+
+\[C_{nm}^{\left(t\right)}=\sum_{k=1}^{N_{MC}}{\Phi_n\left(X_t^k\right)\Phi_m\left(X_t^k\right)}\quad\quad D_n^{\left(t\right)}=\sum_{k=1}^{N_{MC}}{\Phi_n\left(X_t^k\right)\left(R_t\left(X_t,a_t^\star,X_{t+1}\right)+\gamma\max_{a_{t+1}\in\mathcal{A}}Q_{t+1}^\star\left(X_{t+1},a_{t+1}\right)\right)}\]
+
+    Define function \emph{function\_C} and \emph{function\_D} to compute the
+value of matrix \(\mathbf C_t\) and vector \(\mathbf D_t\).
+
+\textbf{Instructions:} Copy-paste implementations from the previous
+assignment,i.e. QLBS as these are the same functions
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{def} \PY{n+nf}{function\PYZus{}C\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{data\PYZus{}mat}\PY{p}{,} \PY{n}{reg\PYZus{}param}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    function\PYZus{}C\PYZus{}vec \PYZhy{} calculate C\PYZus{}\PYZob{}nm\PYZcb{} matrix from Eq. (56) (with a regularization!)}
+         \PY{l+s+sd}{    Eq. (56) in QLBS Q\PYZhy{}Learner in the Black\PYZhy{}Scholes\PYZhy{}Merton article}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Arguments:}
+         \PY{l+s+sd}{    t \PYZhy{} time index, a scalar, an index into time axis of data\PYZus{}mat }
+         \PY{l+s+sd}{    data\PYZus{}mat \PYZhy{} pandas.DataFrame of values of basis functions of dimension T x N\PYZus{}MC x num\PYZus{}basis}
+         \PY{l+s+sd}{    reg\PYZus{}param \PYZhy{} regularization parameter, a scalar}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Return:}
+         \PY{l+s+sd}{    C\PYZus{}mat \PYZhy{} np.array of dimension num\PYZus{}basis x num\PYZus{}basis}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 5\PYZhy{}6 lines of code)}
+             \PY{c+c1}{\PYZsh{} C\PYZus{}mat = your code goes here ....}
+             \PY{n}{X\PYZus{}mat} \PY{o}{=} \PY{n}{data\PYZus{}mat}\PY{p}{[}\PY{n}{t}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{num\PYZus{}basis\PYZus{}funcs} \PY{o}{=} \PY{n}{X\PYZus{}mat}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{C\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X\PYZus{}mat}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{X\PYZus{}mat}\PY{p}{)} \PY{o}{+} \PY{n}{reg\PYZus{}param} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{num\PYZus{}basis\PYZus{}funcs}\PY{p}{)}  
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+         
+             \PY{k}{return} \PY{n}{C\PYZus{}mat}
+         
+         \PY{k}{def} \PY{n+nf}{function\PYZus{}D\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{R}\PY{p}{,} \PY{n}{data\PYZus{}mat}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{n}{gamma}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    function\PYZus{}D\PYZus{}vec \PYZhy{} calculate D\PYZus{}\PYZob{}nm\PYZcb{} vector from Eq. (56) (with a regularization!)}
+         \PY{l+s+sd}{    Eq. (56) in QLBS Q\PYZhy{}Learner in the Black\PYZhy{}Scholes\PYZhy{}Merton article}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Arguments:}
+         \PY{l+s+sd}{    t \PYZhy{} time index, a scalar, an index into time axis of data\PYZus{}mat }
+         \PY{l+s+sd}{    Q \PYZhy{} pandas.DataFrame of Q\PYZhy{}function values of dimension N\PYZus{}MC x T}
+         \PY{l+s+sd}{    R \PYZhy{} pandas.DataFrame of rewards of dimension N\PYZus{}MC x T}
+         \PY{l+s+sd}{    data\PYZus{}mat \PYZhy{} pandas.DataFrame of values of basis functions of dimension T x N\PYZus{}MC x num\PYZus{}basis}
+         \PY{l+s+sd}{    gamma \PYZhy{} one time\PYZhy{}step discount factor \PYZdl{}exp(\PYZhy{}r \PYZbs{}delta t)\PYZdl{}}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Return:}
+         \PY{l+s+sd}{    D\PYZus{}vec \PYZhy{} np.array of dimension num\PYZus{}basis x 1}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 2\PYZhy{}3 lines of code)}
+             \PY{c+c1}{\PYZsh{} D\PYZus{}vec = your code goes here ...}
+             \PY{n}{X\PYZus{}mat} \PY{o}{=} \PY{n}{data\PYZus{}mat}\PY{p}{[}\PY{n}{t}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{D\PYZus{}vec} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X\PYZus{}mat}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{R}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{gamma} \PY{o}{*} \PY{n}{Q}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+         
+             \PY{k}{return} \PY{n}{D\PYZus{}vec}
+\end{Verbatim}
+
+
+    Call \emph{function\_C} and \emph{function\_D} for \(t=T-1,...,0\)
+together with basis function \(\Phi_n\left(X_t\right)\) to compute
+optimal action Q-function
+\(Q_t^\star\left(X_t,a_t^\star\right)=\sum_n^N{\omega_{nt}\Phi_n\left(X_t\right)}\)
+backward recursively with terminal condition
+\(Q_T^\star\left(X_T,a_T=0\right)=-\Pi_T\left(X_T\right)-\lambda Var\left[\Pi_T\left(X_T\right)\right]\).
+
+    Compare the QLBS price to European put price given by Black-Sholes
+formula.
+
+\[C_t^{\left(BS\right)}=Ke^{-r\left(T-t\right)}\mathcal N\left(-d_2\right)-S_t\mathcal N\left(-d_1\right)\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+c1}{\PYZsh{} The Black\PYZhy{}Scholes prices}
+         \PY{k}{def} \PY{n+nf}{bs\PYZus{}put}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{S0}\PY{o}{=}\PY{n}{S0}\PY{p}{,} \PY{n}{K}\PY{o}{=}\PY{n}{K}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{o}{=}\PY{n}{M}\PY{p}{)}\PY{p}{:}
+             \PY{n}{d1} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S0}\PY{o}{/}\PY{n}{K}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{n}{r} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{sigma} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}
+             \PY{n}{d2} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S0}\PY{o}{/}\PY{n}{K}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{n}{r} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{sigma} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}
+             \PY{n}{price} \PY{o}{=} \PY{n}{K} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{r} \PY{o}{*} \PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{d2}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{S0} \PY{o}{*} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{d1}\PY{p}{)}
+             \PY{k}{return} \PY{n}{price}
+         
+         \PY{k}{def} \PY{n+nf}{bs\PYZus{}call}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{S0}\PY{o}{=}\PY{n}{S0}\PY{p}{,} \PY{n}{K}\PY{o}{=}\PY{n}{K}\PY{p}{,} \PY{n}{r}\PY{o}{=}\PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{o}{=}\PY{n}{M}\PY{p}{)}\PY{p}{:}
+             \PY{n}{d1} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S0}\PY{o}{/}\PY{n}{K}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{n}{r} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{sigma} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}
+             \PY{n}{d2} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S0}\PY{o}{/}\PY{n}{K}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{n}{r} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{sigma} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}
+             \PY{n}{price} \PY{o}{=} \PY{n}{S0} \PY{o}{*} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{d1}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{K} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{r} \PY{o}{*} \PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{d2}\PY{p}{)}
+             \PY{k}{return} \PY{n}{price}
+\end{Verbatim}
+
+
+    \subsection{Hedging and Pricing with Reinforcement
+Learning}\label{hedging-and-pricing-with-reinforcement-learning}
+
+    Implement a batch-mode off-policy model-free Q-Learning by Fitted
+Q-Iteration. The only data available is given by a set of \(N_{MC}\)
+paths for the underlying state variable \(X_t\), hedge position \(a_t\),
+instantaneous reward \(R_t\) and the next-time value \(X_{t+1}\).
+
+\[\mathcal F_t^k=\left\{\left(X_t^k,a_t^k,R_t^k,X_{t+1}^k\right)\right\}_{t=0}^{T-1}\quad k=1,...,N_{MC}\]
+
+Detailed steps of solving the Bellman optimalty equation by
+Reinforcement Learning are illustrated below.
+
+    Expand Q-function in basis functions with time-dependent coefficients
+parametrized by a matrix \(\mathbf W_t\).
+
+\[Q_t^\star\left(X_t,a_t\right)=\mathbf A_t^T\mathbf W_t\Phi\left(X_t\right)=\mathbf A_t^T\mathbf U_W\left(t,X_t\right)=\vec{W}_t^T \vec{\Psi}\left(X_t,a_t\right)\]
+
+\[\mathbf A_t=\left(\begin{matrix}1\\a_t\\\frac{1}{2}a_t^2\end{matrix}\right)\quad\mathbf U_W\left(t,X_t\right)=\mathbf W_t\Phi\left(X_t\right)\]
+
+where \(\vec{W}_t\) is obtained by concatenating columns of matrix
+\(\mathbf W_t\) while \$ vec \left( \{\bf \Psi\} \left(X\_t,a\_t \right)
+\right) = vec , \left( \{\bf A\}\_t \otimes {\bf \Phi}\^{}T(X) \right)
+\$ stands for a vector obtained by concatenating columns of the outer
+product of vectors \$ \{\bf A\}\_t \$ and \$ \{\bf \Phi\}(X) \$.
+
+Compute vector \(\mathbf A_t\) then compute
+\(\vec\Psi\left(X_t,a_t\right)\) for each \(X_t^k\) and store in a
+dictionary with key path and time \(\left[k,t\right]\).
+
+    \subsection{Part 3: Make off-policy
+data}\label{part-3-make-off-policy-data}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{on-policy} data - contains an optimal action and the
+  corresponding reward
+\item
+  \textbf{off-policy} data - contains random action and the
+  corresponding reward
+\end{itemize}
+
+Given a large enough sample, i.e. N\_MC tending to infinity Q-Learner
+will learn an optimal policy from the data in a model-free setting. In
+our case a random action is an optimal action + noise generated by
+sampling from uniform: distribution
+\[a_t\left(X_t\right) = a_t^\star\left(X_t\right) \sim U\left[1-\eta, 1 + \eta\right]\]
+
+where \(\eta\) is a disturbance level In other words, each noisy action
+is calculated by taking optimal action computed previously and
+multiplying it by a uniform r.v. in the interval
+\(\left[1-\eta, 1 + \eta\right]\)
+
+\textbf{Instructions:} In the loop below: - Compute the optimal policy,
+and write the result to a\_op - Now disturb these values by a random
+noise
+\[a_t\left(X_t\right) = a_t^\star\left(X_t\right) \sim U\left[1-\eta, 1 + \eta\right]\]
+- Compute portfolio values corresponding to observed actions
+\[\Pi_t=\gamma\left[\Pi_{t+1}-a_t^\star\Delta S_t\right]\quad t=T-1,...,0\]
+- Compute rewards corrresponding to observed actions
+\[R_t\left(X_t,a_t,X_{t+1}\right)=\gamma a_t\Delta S_t-\lambda Var\left[\Pi_t\space|\space\mathcal F_t\right]\quad t=T-1,...,0\]
+with terminal condition \[R_T=-\lambda Var\left[\Pi_T\right]\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{eta} \PY{o}{=} \PY{l+m+mf}{0.5} \PY{c+c1}{\PYZsh{}  0.5 \PYZsh{} 0.25 \PYZsh{} 0.05 \PYZsh{} 0.5 \PYZsh{} 0.1 \PYZsh{} 0.25 \PYZsh{} 0.15}
+         \PY{n}{reg\PYZus{}param} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)} \PY{c+c1}{\PYZsh{} Fix random seed}
+         
+         \PY{c+c1}{\PYZsh{} disturbed optimal actions to be computed }
+         \PY{n}{a\PYZus{}op} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+         
+         \PY{c+c1}{\PYZsh{} also make portfolios and rewards}
+         \PY{c+c1}{\PYZsh{} portfolio value}
+         \PY{n}{Pi\PYZus{}op} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{S}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{terminal\PYZus{}payoff}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{Pi\PYZus{}op\PYZus{}hat} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Pi\PYZus{}op\PYZus{}hat}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} reward function}
+         \PY{n}{R\PYZus{}op} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{risk\PYZus{}lambda} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} The backward loop}
+         \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 11\PYZhy{}12 lines of code)}
+             
+             \PY{c+c1}{\PYZsh{} 1. Compute the optimal policy, and write the result to a\PYZus{}op}
+             \PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} 2. Now disturb these values by a random noise}
+             \PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{p}{]} \PY{o}{*}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{eta}\PY{p}{,} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{eta}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} 3. Compute portfolio values corresponding to observed actions}
+             \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{gamma} \PY{o}{*} \PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{*} \PY{n}{delta\PYZus{}S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+             \PY{n}{Pi\PYZus{}hat}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}Pi\PYZus{}op\PYZus{}hat.iloc[:,\PYZhy{}1] = Pi\PYZus{}op.iloc[:,\PYZhy{}1] \PYZhy{} np.mean(Pi\PYZus{}op.iloc[:,\PYZhy{}1])}
+             \PY{n}{Pi\PYZus{}op\PYZus{}hat}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} 4. Compute rewards corrresponding to observed actions}
+             \PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{gamma} \PY{o}{*} \PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{*} \PY{n}{delta\PYZus{}S}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{risk\PYZus{}lambda} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+           
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{done with backward loop!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+done with backward loop!
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+         \PY{n}{idx\PYZus{}row} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+         \PY{n}{idx\PYZus{}col} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{part\PYZus{}1} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{idx\PYZus{}row}\PY{p}{,} \PY{n}{idx\PYZus{}col}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{k}{try}\PY{p}{:}
+             \PY{n}{part1} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{repr}\PY{p}{,} \PY{n}{part\PYZus{}1}\PY{p}{)}\PY{p}{)}
+         \PY{k}{except} \PY{n+ne}{TypeError}\PY{p}{:}
+             \PY{n}{part1} \PY{o}{=} \PY{n+nb}{repr}\PY{p}{(}\PY{n}{part\PYZus{}1}\PY{p}{)}
+         \PY{n}{submissions}\PY{p}{[}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{part1}
+         \PY{n}{grading}\PY{o}{.}\PY{n}{submit}\PY{p}{(}\PY{n}{COURSERA\PYZus{}EMAIL}\PY{p}{,} \PY{n}{COURSERA\PYZus{}TOKEN}\PY{p}{,} \PY{n}{assignment\PYZus{}key}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{,}\PY{n}{submissions}\PY{p}{)}
+         
+         \PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{idx\PYZus{}row}\PY{p}{,} \PY{n}{idx\PYZus{}col}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Submission successful, please check on the coursera grader page for the status
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} array([-4.41648229e-02, -1.11627835e+00, -3.26618627e-01, -4.41648229e-02,
+                 1.86629772e-01, -3.26618627e-01, -3.26618627e-01, -4.41648229e-02,
+                -1.91643174e+00,  1.86629772e-01, -4.41648229e-02, -1.15471981e+01,
+                 8.36214406e-03, -4.41648229e-02, -5.19860756e-01,  8.36214406e-03,
+                 8.36214406e-03, -4.41648229e-02, -5.82629891e-02, -5.19860756e-01,
+                -4.41648229e-02, -2.93024596e+00, -6.70591047e-01, -4.41648229e-02,
+                 3.38303735e-01, -6.70591047e-01, -6.70591047e-01, -4.41648229e-02,
+                -1.35776224e-01,  3.38303735e-01, -4.41648229e-02,  3.89179538e-02,
+                -2.11256164e+00, -4.41648229e-02, -8.62139383e-01, -2.11256164e+00,
+                -2.11256164e+00, -4.41648229e-02,  1.03931641e+00, -8.62139383e-01,
+                -4.41648229e-02, -3.88581528e+00, -2.78664643e-01, -4.41648229e-02,
+                 1.08026845e+00, -2.78664643e-01, -2.78664643e-01, -4.41648229e-02,
+                -1.59815566e-01,  1.08026845e+00, -4.41648229e-02,  1.34127261e+00,
+                -1.32542466e+00, -4.41648229e-02, -1.75711669e-01, -1.32542466e+00,
+                -1.32542466e+00, -4.41648229e-02, -6.89031647e-01, -1.75711669e-01,
+                -4.41648229e-02,  1.36065847e+00, -4.83656917e-03, -4.41648229e-02,
+                 1.01545031e+00, -4.83656917e-03, -4.83656917e-03, -4.41648229e-02,
+                 1.06509261e+00,  1.01545031e+00, -4.41648229e-02, -5.48069399e-01,
+                 6.69233272e+00, -4.41648229e-02,  2.48031088e+00,  6.69233272e+00,
+                 6.69233272e+00, -4.41648229e-02, -4.96873017e-01,  2.48031088e+00,
+                -4.41648229e-02,  1.05762523e+00, -5.25381441e+00, -4.41648229e-02,
+                -3.93284570e+00, -5.25381441e+00, -5.25381441e+00, -4.41648229e-02,
+                -1.75980494e-01, -3.93284570e+00, -4.41648229e-02, -1.12194921e-01,
+                -2.04245741e-02, -4.41648229e-02, -2.95192215e-01, -2.04245741e-02,
+                -2.04245741e-02, -4.41648229e-02, -1.70008788e+00, -2.95192215e-01])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+         \PY{n}{idx\PYZus{}row} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+         \PY{n}{idx\PYZus{}col} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{part\PYZus{}2} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{idx\PYZus{}row}\PY{p}{,} \PY{n}{idx\PYZus{}col}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{k}{try}\PY{p}{:}
+             \PY{n}{part2} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{repr}\PY{p}{,} \PY{n}{part\PYZus{}2}\PY{p}{)}\PY{p}{)}
+         \PY{k}{except} \PY{n+ne}{TypeError}\PY{p}{:}
+             \PY{n}{part2} \PY{o}{=} \PY{n+nb}{repr}\PY{p}{(}\PY{n}{part\PYZus{}2}\PY{p}{)}
+         \PY{n}{submissions}\PY{p}{[}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{part2}
+         \PY{n}{grading}\PY{o}{.}\PY{n}{submit}\PY{p}{(}\PY{n}{COURSERA\PYZus{}EMAIL}\PY{p}{,} \PY{n}{COURSERA\PYZus{}TOKEN}\PY{p}{,} \PY{n}{assignment\PYZus{}key}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{,}\PY{n}{submissions}\PY{p}{)}
+         
+         \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{idx\PYZus{}row}\PY{p}{,} \PY{n}{idx\PYZus{}col}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Submission successful, please check on the coursera grader page for the status
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} array([ 0.        ,  1.42884104,  0.33751419,  0.        ,  1.21733506,
+                 0.33751419,  0.33751419,  0.        ,  3.11498207,  1.21733506,
+                 0.        , 11.42133749, -0.10310673,  0.        , 11.86648425,
+                -0.10310673, -0.10310673,  0.        , 11.85284966, 11.86648425,
+                 0.        ,  3.77013248,  0.86748124,  0.        ,  3.39527529,
+                 0.86748124,  0.86748124,  0.        ,  3.50140426,  3.39527529,
+                 0.        ,  2.37907167,  2.45349463,  0.        ,  3.21159555,
+                 2.45349463,  2.45349463,  0.        ,  2.143548  ,  3.21159555,
+                 0.        ,  4.22816728,  0.36745282,  0.        ,  3.10906092,
+                 0.36745282,  0.36745282,  0.        ,  3.24065673,  3.10906092,
+                 0.        ,  1.4213709 ,  2.79987609,  0.        ,  1.57224362,
+                 2.79987609,  2.79987609,  0.        ,  2.24072042,  1.57224362,
+                 9.05061694,  4.48960086,  5.90296866,  9.05061694,  3.43400874,
+                 5.90296866,  5.90296866,  9.05061694,  2.3390757 ,  3.43400874,
+                11.39022164,  5.65090831,  5.15180177, 11.39022164,  3.12466356,
+                 5.15180177,  5.15180177, 11.39022164,  3.59323901,  3.12466356,
+                 0.        ,  3.05819303,  4.15983366,  0.        ,  6.95803609,
+                 4.15983366,  4.15983366,  0.        ,  7.08659999,  6.95803609,
+                 0.        ,  0.12024876,  0.03147899,  0.        ,  0.3970914 ,
+                 0.03147899,  0.03147899,  0.        ,  2.08248553,  0.3970914 ])
+\end{Verbatim}
+            
+    \subsection{Override on-policy data with off-policy
+data}\label{override-on-policy-data-with-off-policy-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} Override on\PYZhy{}policy data with off\PYZhy{}policy data}
+         \PY{n}{a} \PY{o}{=} \PY{n}{a\PYZus{}op}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}      \PY{c+c1}{\PYZsh{} distrubed actions}
+         \PY{n}{Pi} \PY{o}{=} \PY{n}{Pi\PYZus{}op}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}    \PY{c+c1}{\PYZsh{} disturbed portfolio values}
+         \PY{n}{Pi\PYZus{}hat} \PY{o}{=} \PY{n}{Pi\PYZus{}op\PYZus{}hat}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+         \PY{n}{R} \PY{o}{=} \PY{n}{R\PYZus{}op}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{} make matrix A\PYZus{}t of shape (3 x num\PYZus{}MC x num\PYZus{}steps)}
+         \PY{n}{num\PYZus{}MC} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{} number of simulated paths}
+         \PY{n}{num\PYZus{}TS} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{c+c1}{\PYZsh{} number of time steps}
+         \PY{n}{a\PYZus{}1\PYZus{}1} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{num\PYZus{}MC}\PY{p}{,} \PY{n}{num\PYZus{}TS}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{a\PYZus{}1\PYZus{}2} \PY{o}{=} \PY{l+m+mf}{0.5} \PY{o}{*} \PY{n}{a\PYZus{}1\PYZus{}1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+         \PY{n}{ones\PYZus{}3d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{num\PYZus{}MC}\PY{p}{,} \PY{n}{num\PYZus{}TS}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{A\PYZus{}stack} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{ones\PYZus{}3d}\PY{p}{,} \PY{n}{a\PYZus{}1\PYZus{}1}\PY{p}{,} \PY{n}{a\PYZus{}1\PYZus{}2}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{A\PYZus{}stack}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3, 10000, 7)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{data\PYZus{}mat\PYZus{}swap\PYZus{}idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{swapaxes}\PY{p}{(}\PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{data\PYZus{}mat\PYZus{}swap\PYZus{}idx}\PY{o}{.}\PY{n}{shape}\PY{p}{)} \PY{c+c1}{\PYZsh{} (12, 10000, 25)}
+         
+         \PY{c+c1}{\PYZsh{} expand dimensions of matrices to multiply element\PYZhy{}wise}
+         \PY{n}{A\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{expand\PYZus{}dims}\PY{p}{(}\PY{n}{A\PYZus{}stack}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{c+c1}{\PYZsh{} becomes (3,1,10000,25)}
+         \PY{n}{data\PYZus{}mat\PYZus{}swap\PYZus{}idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{expand\PYZus{}dims}\PY{p}{(}\PY{n}{data\PYZus{}mat\PYZus{}swap\PYZus{}idx}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}  \PY{c+c1}{\PYZsh{} becomes (1,12,10000,25)}
+         
+         \PY{n}{Psi\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{A\PYZus{}2}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}swap\PYZus{}idx}\PY{p}{)} \PY{c+c1}{\PYZsh{} this is a matrix of size 3 x num\PYZus{}basis x num\PYZus{}MC x num\PYZus{}steps}
+         
+         \PY{c+c1}{\PYZsh{} now concatenate columns along the first dimension}
+         \PY{c+c1}{\PYZsh{} Psi\PYZus{}mat = Psi\PYZus{}mat.reshape(\PYZhy{}1, a.shape[0], a.shape[1], order=\PYZsq{}F\PYZsq{})}
+         \PY{n}{Psi\PYZus{}mat} \PY{o}{=} \PY{n}{Psi\PYZus{}mat}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{p}{,} \PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{order}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{Psi\PYZus{}mat}\PY{o}{.}\PY{n}{shape}\PY{p}{)} \PY{c+c1}{\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(12, 10000, 7)
+(36, 10000, 7)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} make matrix S\PYZus{}t }
+         
+         \PY{n}{Psi\PYZus{}1\PYZus{}aux} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{expand\PYZus{}dims}\PY{p}{(}\PY{n}{Psi\PYZus{}mat}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{Psi\PYZus{}2\PYZus{}aux} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{expand\PYZus{}dims}\PY{p}{(}\PY{n}{Psi\PYZus{}mat}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{Psi\PYZus{}1\PYZus{}aux}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{Psi\PYZus{}2\PYZus{}aux}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+         
+         \PY{n}{S\PYZus{}t\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{Psi\PYZus{}1\PYZus{}aux}\PY{p}{,} \PY{n}{Psi\PYZus{}2\PYZus{}aux}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)} 
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{S\PYZus{}t\PYZus{}mat}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(36, 1, 10000, 7) (1, 36, 10000, 7)
+(36, 36, 7)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} clean up some space}
+         \PY{k}{del} \PY{n}{Psi\PYZus{}1\PYZus{}aux}\PY{p}{,} \PY{n}{Psi\PYZus{}2\PYZus{}aux}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}swap\PYZus{}idx}\PY{p}{,} \PY{n}{A\PYZus{}2}
+\end{Verbatim}
+
+
+    \subsection{\texorpdfstring{Part 4: Calculate \(\mathbf S_t\) and
+\(\mathbf M_t\) marix and
+vector}{Part 4: Calculate \textbackslash{}mathbf S\_t and \textbackslash{}mathbf M\_t marix and vector}}\label{part-4-calculate-mathbf-s_t-and-mathbf-m_t-marix-and-vector}
+
+Vector \(\vec W_t\) could be solved by
+
+\[\vec W_t=\mathbf S_t^{-1}\mathbf M_t\]
+
+where \(\mathbf S_t\) and \(\mathbf M_t\) are matrix and vector
+respectively with elements given by
+
+\[S_{nm}^{\left(t\right)}=\sum_{k=1}^{N_{MC}}{\Psi_n\left(X_t^k,a_t^k\right)\Psi_m\left(X_t^k,a_t^k\right)}\quad\quad M_n^{\left(t\right)}=\sum_{k=1}^{N_{MC}}{\Psi_n\left(X_t^k,a_t^k\right)\left(R_t\left(X_t,a_t,X_{t+1}\right)+\gamma\max_{a_{t+1}\in\mathcal{A}}Q_{t+1}^\star\left(X_{t+1},a_{t+1}\right)\right)}\]
+
+Define function \emph{function\_S} and \emph{function\_M} to compute the
+value of matrix \(\mathbf S_t\) and vector \(\mathbf M_t\).
+
+\textbf{Instructions:} - implement function\_S\_vec() which computes
+\(S_{nm}^{\left(t\right)}\) matrix - implement function\_M\_vec() which
+computes \(M_n^{\left(t\right)}\) column vector
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} vectorized functions}
+         
+         \PY{k}{def} \PY{n+nf}{function\PYZus{}S\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{S\PYZus{}t\PYZus{}mat}\PY{p}{,} \PY{n}{reg\PYZus{}param}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    function\PYZus{}S\PYZus{}vec \PYZhy{} calculate S\PYZus{}\PYZob{}nm\PYZcb{} matrix from Eq. (75) (with a regularization!)}
+         \PY{l+s+sd}{    Eq. (75) in QLBS Q\PYZhy{}Learner in the Black\PYZhy{}Scholes\PYZhy{}Merton article}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    num\PYZus{}Qbasis = 3 x num\PYZus{}basis, 3 because of the basis expansion (1, a\PYZus{}t, 0.5 a\PYZus{}t\PYZca{}2)}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Arguments:}
+         \PY{l+s+sd}{    t \PYZhy{} time index, a scalar, an index into time axis of S\PYZus{}t\PYZus{}mat }
+         \PY{l+s+sd}{    S\PYZus{}t\PYZus{}mat \PYZhy{} pandas.DataFrame of dimension num\PYZus{}Qbasis x num\PYZus{}Qbasis x T}
+         \PY{l+s+sd}{    reg\PYZus{}param \PYZhy{} regularization parameter, a scalar}
+         \PY{l+s+sd}{    Return:}
+         \PY{l+s+sd}{    S\PYZus{}mat\PYZus{}reg \PYZhy{} num\PYZus{}Qbasis x num\PYZus{}Qbasis}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 4\PYZhy{}5 lines of code)}
+             \PY{c+c1}{\PYZsh{} S\PYZus{}mat\PYZus{}reg = your code goes here ...}
+             \PY{n}{num\PYZus{}Qbasis} \PY{o}{=} \PY{n}{S\PYZus{}t\PYZus{}mat}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{S\PYZus{}mat\PYZus{}reg} \PY{o}{=} \PY{n}{S\PYZus{}t\PYZus{}mat}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{reg\PYZus{}param} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{num\PYZus{}Qbasis}\PY{p}{)}    
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+             \PY{k}{return} \PY{n}{S\PYZus{}mat\PYZus{}reg}
+            
+         \PY{k}{def} \PY{n+nf}{function\PYZus{}M\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,}
+                            \PY{n}{Q\PYZus{}star}\PY{p}{,} 
+                            \PY{n}{R}\PY{p}{,} 
+                            \PY{n}{Psi\PYZus{}mat\PYZus{}t}\PY{p}{,} 
+                            \PY{n}{gamma}\PY{o}{=}\PY{n}{gamma}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{l+s+sd}{    function\PYZus{}S\PYZus{}vec \PYZhy{} calculate M\PYZus{}\PYZob{}nm\PYZcb{} vector from Eq. (75) (with a regularization!)}
+         \PY{l+s+sd}{    Eq. (75) in QLBS Q\PYZhy{}Learner in the Black\PYZhy{}Scholes\PYZhy{}Merton article}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    num\PYZus{}Qbasis = 3 x num\PYZus{}basis, 3 because of the basis expansion (1, a\PYZus{}t, 0.5 a\PYZus{}t\PYZca{}2)}
+         \PY{l+s+sd}{    }
+         \PY{l+s+sd}{    Arguments:}
+         \PY{l+s+sd}{    t\PYZhy{} time index, a scalar, an index into time axis of S\PYZus{}t\PYZus{}mat }
+         \PY{l+s+sd}{    Q\PYZus{}star \PYZhy{} pandas.DataFrame of Q\PYZhy{}function values of dimension N\PYZus{}MC x T}
+         \PY{l+s+sd}{    R \PYZhy{} pandas.DataFrame of rewards of dimension N\PYZus{}MC x T}
+         \PY{l+s+sd}{    Psi\PYZus{}mat\PYZus{}t \PYZhy{} pandas.DataFrame of dimension num\PYZus{}Qbasis x N\PYZus{}MC}
+         \PY{l+s+sd}{    gamma \PYZhy{} one time\PYZhy{}step discount factor \PYZdl{}exp(\PYZhy{}r \PYZbs{}delta t)\PYZdl{}}
+         \PY{l+s+sd}{    Return:}
+         \PY{l+s+sd}{    M\PYZus{}t \PYZhy{} np.array of dimension num\PYZus{}Qbasis x 1}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} START CODE HERE \PYZsh{}\PYZsh{}\PYZsh{} (≈ 2\PYZhy{}3 lines of code)}
+             \PY{c+c1}{\PYZsh{} M\PYZus{}t = your code goes here ...}
+             \PY{n}{M\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{Psi\PYZus{}mat\PYZus{}t}\PY{p}{,} \PY{n}{R}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{gamma}  \PY{o}{*}\PY{n}{Q\PYZus{}star}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} 
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} END CODE HERE \PYZsh{}\PYZsh{}\PYZsh{}}
+         
+             \PY{k}{return} \PY{n}{M\PYZus{}t}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{n}{reg\PYZus{}param} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+         \PY{n}{S\PYZus{}mat\PYZus{}reg} \PY{o}{=} \PY{n}{function\PYZus{}S\PYZus{}vec}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{S\PYZus{}t\PYZus{}mat}\PY{p}{,} \PY{n}{reg\PYZus{}param}\PY{p}{)} 
+         \PY{n}{idx\PYZus{}row} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{n}{S\PYZus{}mat\PYZus{}reg}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+         \PY{n}{idx\PYZus{}col} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{n}{low}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{high}\PY{o}{=}\PY{n}{S\PYZus{}mat\PYZus{}reg}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{part\PYZus{}3} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{S\PYZus{}mat\PYZus{}reg}\PY{p}{[}\PY{n}{idx\PYZus{}row}\PY{p}{,} \PY{n}{idx\PYZus{}col}\PY{p}{]}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{k}{try}\PY{p}{:}
+             \PY{n}{part3} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{repr}\PY{p}{,} \PY{n}{part\PYZus{}3}\PY{p}{)}\PY{p}{)}
+         \PY{k}{except} \PY{n+ne}{TypeError}\PY{p}{:}
+             \PY{n}{part3} \PY{o}{=} \PY{n+nb}{repr}\PY{p}{(}\PY{n}{part\PYZus{}3}\PY{p}{)}
+         \PY{n}{submissions}\PY{p}{[}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{part3}
+         \PY{n}{grading}\PY{o}{.}\PY{n}{submit}\PY{p}{(}\PY{n}{COURSERA\PYZus{}EMAIL}\PY{p}{,} \PY{n}{COURSERA\PYZus{}TOKEN}\PY{p}{,} \PY{n}{assignment\PYZus{}key}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{,}\PY{n}{submissions}\PY{p}{)}
+         
+         \PY{n}{S\PYZus{}mat\PYZus{}reg}\PY{p}{[}\PY{n}{idx\PYZus{}row}\PY{p}{,} \PY{n}{idx\PYZus{}col}\PY{p}{]}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Submission successful, please check on the coursera grader page for the status
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} array([2.22709265e-01, 2.68165972e+02, 4.46911166e+01, 2.00678517e+00,
+                1.10020457e+03, 8.44758984e-01, 2.29671816e+02, 2.29671816e+02,
+                3.78571544e-03, 1.41884196e-02])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{n}{Q\PYZus{}RL} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{risk\PYZus{}lambda} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{Q\PYZus{}star} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Q\PYZus{}star}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{n}{M\PYZus{}t} \PY{o}{=} \PY{n}{function\PYZus{}M\PYZus{}vec}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{Q\PYZus{}star}\PY{p}{,} \PY{n}{R}\PY{p}{,} \PY{n}{Psi\PYZus{}mat}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{gamma}\PY{p}{)}
+         
+         \PY{n}{part\PYZus{}4} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{M\PYZus{}t}\PY{p}{)}
+         \PY{k}{try}\PY{p}{:}
+             \PY{n}{part4} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{repr}\PY{p}{,} \PY{n}{part\PYZus{}4}\PY{p}{)}\PY{p}{)}
+         \PY{k}{except} \PY{n+ne}{TypeError}\PY{p}{:}
+             \PY{n}{part4} \PY{o}{=} \PY{n+nb}{repr}\PY{p}{(}\PY{n}{part\PYZus{}4}\PY{p}{)}
+         \PY{n}{submissions}\PY{p}{[}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{part4}
+         \PY{n}{grading}\PY{o}{.}\PY{n}{submit}\PY{p}{(}\PY{n}{COURSERA\PYZus{}EMAIL}\PY{p}{,} \PY{n}{COURSERA\PYZus{}TOKEN}\PY{p}{,} \PY{n}{assignment\PYZus{}key}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{,}\PY{n}{submissions}\PY{p}{)}
+         
+         \PY{n}{M\PYZus{}t}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Submission successful, please check on the coursera grader page for the status
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} array([-6.03245979e+01, -8.79998437e+01, -2.37497369e+02, -5.62543448e+02,
+                 2.09052583e+02, -6.44961368e+02, -2.86243249e+03,  2.77687723e+03,
+                -1.85728309e+03, -9.40505558e+03,  9.50610806e+03, -5.29328413e+03,
+                -1.69800964e+04,  1.61026240e+04, -8.42698927e+03, -8.46211901e+03,
+                 6.05144701e+03, -2.62196067e+03, -2.12066484e+03,  8.42176836e+02,
+                -2.51624368e+02, -3.01116012e+02,  2.57124667e+01, -3.22639691e+00,
+                -5.53769815e+01,  1.67390280e+00, -6.79562288e-02, -1.61140947e+01,
+                 1.16524075e+00, -1.49934348e-01, -9.79117274e+00, -7.22309330e-02,
+                -4.70108927e-01, -6.87393130e+00, -2.10244341e+00, -7.70293521e-01])
+\end{Verbatim}
+            
+    Call \emph{function\_S} and \emph{function\_M} for \(t=T-1,...,0\)
+together with vector \(\vec\Psi\left(X_t,a_t\right)\) to compute
+\(\vec W_t\) and learn the Q-function
+\(Q_t^\star\left(X_t,a_t\right)=\mathbf A_t^T\mathbf U_W\left(t,X_t\right)\)
+implied by the input data backward recursively with terminal condition
+\(Q_T^\star\left(X_T,a_T=0\right)=-\Pi_T\left(X_T\right)-\lambda Var\left[\Pi_T\left(X_T\right)\right]\).
+
+When the vector \$ \vec{W}\_t \$ is computed as per the above at time \$
+t \$, we can convert it back to a matrix \$
+\bf{W}_t $ obtained from the vector $ \vec{W}_t $ by 
+reshaping to the shape $ 3 \times M $.
+
+We can now calculate the matrix $ {\bf U}_t $
+at time $ t $ for the whole set of MC paths as follows (this is Eq.(65) from the paper in a matrix form):
+
+$$  \mathbf U_{W} \left(t,X_t \right) = 
+\left[\begin{matrix} \mathbf U_W^{0,k}\left(t,X_t \right) \\  
+\mathbf U_W^{1,k}\left(t,X_t \right) \\ \mathbf U_W^{2,k} \left(t,X_t \right)
+\end{matrix}\right]
+= \bf{W}_t \Phi_t \left(t,X_t \right)  $$
+
+Here the matrix $ {\bf \Phi}_t $ has the shape shape $ M \times N_{MC}$. 
+Therefore, their dot product has dimension $ 3 \times N_{MC}$, as it should be. 
+
+Once this matrix $ {\bf U}_t $ is computed, individual vectors $ {\bf U}_{W}^{1}, {\bf U}_{W}^{2}, {\bf U}_{W}^{3} $ for all MC paths are read off as rows of this matrix.
+
+From here, we can compute the optimal action and optimal Q-function $Q^{\star}(X_t, a_t^{\star}) $ at the optimal action for a given step $ t $. This will be used to evaluate the $ \max_{a_{t+1} \in \mathcal{A}} Q^{\star} \left(X_{t+1}, a_{t+1} \right) $.
+
+
+The optimal action and optimal Q-function with the optimal action could be computed by
+
+$$a_t^\star\left(X_t\right)=\frac{\mathbb{E}_{t} \left[  \Delta \hat{S}_{t}  \hat{\Pi}_{t+1} + \frac{1}{2 \gamma \lambda} \Delta S_{t} \right]}{
+  \mathbb{E}_{t} \left[ \left( \Delta \hat{S}_{t} \right)^2 \right]}\, , 
+\quad\quad Q_t^\star\left(X_t,a_t^\star\right)=\mathbf U_W^{\left(0\right)}\left(t,X_t\right)+ a_t^\star \mathbf U_W^{\left(2\right)}\left(t,X_t\right) +\frac{1}{2}\left(a_t^\star\right)^2\mathbf U_W^{\left(2\right)}\left(t,X_t\right)$$
+
+with terminal condition $a_T^\star=0$ and $Q_T^\star\left(X_T,a_T^\star=0\right)=-\Pi_T\left(X_T\right)-\lambda Var\left[\Pi_T\left(X_T\right)\right]$.
+
+Plots of 5 optimal action $a_t^\star\left(X_t\right)$, optimal Q-function with optimal action $Q_t^\star\left(X_t,a_t^\star\right)$ and implied Q-function $Q_t^\star\left(X_t,a_t\right)\$
+paths are shown below.
+
+    \subsection{Fitted Q Iteration (FQI)}\label{fitted-q-iteration-fqi}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{starttime} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} implied Q\PYZhy{}function by input data (using the first form in Eq.(68))}
+         \PY{n}{Q\PYZus{}RL} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{risk\PYZus{}lambda} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{n}{Pi}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} optimal action}
+         \PY{n}{a\PYZus{}opt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{N\PYZus{}MC}\PY{p}{,}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{a\PYZus{}star} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{a\PYZus{}star}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+         
+         \PY{c+c1}{\PYZsh{} optimal Q\PYZhy{}function with optimal action}
+         \PY{n}{Q\PYZus{}star} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Q\PYZus{}star}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} max\PYZus{}Q\PYZus{}star\PYZus{}next = Q\PYZus{}star.iloc[:,\PYZhy{}1].values }
+         \PY{n}{max\PYZus{}Q\PYZus{}star} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{N\PYZus{}MC}\PY{p}{,}\PY{n}{T}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{max\PYZus{}Q\PYZus{}star}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+         
+         \PY{n}{num\PYZus{}basis} \PY{o}{=} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         
+         \PY{n}{reg\PYZus{}param} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3}
+         \PY{n}{hyper\PYZus{}param} \PY{o}{=}  \PY{l+m+mf}{1e\PYZhy{}1}
+         
+         \PY{c+c1}{\PYZsh{} The backward loop}
+         \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{} calculate vector W\PYZus{}t}
+             \PY{n}{S\PYZus{}mat\PYZus{}reg} \PY{o}{=} \PY{n}{function\PYZus{}S\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{S\PYZus{}t\PYZus{}mat}\PY{p}{,}\PY{n}{reg\PYZus{}param}\PY{p}{)} 
+             \PY{n}{M\PYZus{}t} \PY{o}{=} \PY{n}{function\PYZus{}M\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{Q\PYZus{}star}\PY{p}{,} \PY{n}{R}\PY{p}{,} \PY{n}{Psi\PYZus{}mat}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{gamma}\PY{p}{)}
+             \PY{n}{W\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{S\PYZus{}mat\PYZus{}reg}\PY{p}{)}\PY{p}{,}\PY{n}{M\PYZus{}t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} this is an 1D array of dimension 3M}
+             
+             \PY{c+c1}{\PYZsh{} reshape to a matrix W\PYZus{}mat  }
+             \PY{n}{W\PYZus{}mat} \PY{o}{=} \PY{n}{W\PYZus{}t}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{num\PYZus{}basis}\PY{p}{)}\PY{p}{,} \PY{n}{order}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}  \PY{c+c1}{\PYZsh{} shape 3 x M }
+                 
+             \PY{c+c1}{\PYZsh{} make matrix Phi\PYZus{}mat}
+             \PY{n}{Phi\PYZus{}mat} \PY{o}{=} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{[}\PY{n}{t}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{T}  \PY{c+c1}{\PYZsh{} dimension M x N\PYZus{}MC}
+         
+             \PY{c+c1}{\PYZsh{} compute matrix U\PYZus{}mat of dimension N\PYZus{}MC x 3 }
+             \PY{n}{U\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{W\PYZus{}mat}\PY{p}{,} \PY{n}{Phi\PYZus{}mat}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} compute vectors U\PYZus{}W\PYZca{}0,U\PYZus{}W\PYZca{}1,U\PYZus{}W\PYZca{}2 as rows of matrix U\PYZus{}mat  }
+             \PY{n}{U\PYZus{}W\PYZus{}0} \PY{o}{=} \PY{n}{U\PYZus{}mat}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+             \PY{n}{U\PYZus{}W\PYZus{}1} \PY{o}{=} \PY{n}{U\PYZus{}mat}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+             \PY{n}{U\PYZus{}W\PYZus{}2} \PY{o}{=} \PY{n}{U\PYZus{}mat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{} IMPORTANT!!! Instead, use hedges computed as in DP approach:}
+             \PY{c+c1}{\PYZsh{} in this way, errors of function approximation do not back\PYZhy{}propagate. }
+             \PY{c+c1}{\PYZsh{} This provides a stable solution, unlike}
+             \PY{c+c1}{\PYZsh{} the first method that leads to a diverging solution }
+             \PY{n}{A\PYZus{}mat} \PY{o}{=} \PY{n}{function\PYZus{}A\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{,} \PY{n}{reg\PYZus{}param}\PY{p}{)}
+             \PY{n}{B\PYZus{}vec} \PY{o}{=} \PY{n}{function\PYZus{}B\PYZus{}vec}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{Pi\PYZus{}hat}\PY{p}{,} \PY{n}{delta\PYZus{}S\PYZus{}hat}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} print (\PYZsq{}t =  A\PYZus{}mat.shape = B\PYZus{}vec.shape = \PYZsq{}, t, A\PYZus{}mat.shape, B\PYZus{}vec.shape)}
+             \PY{n}{phi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{A\PYZus{}mat}\PY{p}{)}\PY{p}{,} \PY{n}{B\PYZus{}vec}\PY{p}{)}
+             
+             \PY{n}{a\PYZus{}opt}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{data\PYZus{}mat\PYZus{}t}\PY{p}{[}\PY{n}{t}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{phi}\PY{p}{)}
+             \PY{n}{a\PYZus{}star}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{a\PYZus{}opt}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} 
+         
+             \PY{n}{max\PYZus{}Q\PYZus{}star}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{U\PYZus{}W\PYZus{}0} \PY{o}{+} \PY{n}{a\PYZus{}opt}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{*} \PY{n}{U\PYZus{}W\PYZus{}1} \PY{o}{+} \PY{l+m+mf}{0.5} \PY{o}{*} \PY{p}{(}\PY{n}{a\PYZus{}opt}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{U\PYZus{}W\PYZus{}2}       
+             
+             \PY{c+c1}{\PYZsh{} update dataframes     }
+             \PY{n}{Q\PYZus{}star}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{max\PYZus{}Q\PYZus{}star}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}
+             
+             \PY{c+c1}{\PYZsh{} update the Q\PYZus{}RL solution given by a dot product of two matrices W\PYZus{}t Psi\PYZus{}t}
+             \PY{n}{Psi\PYZus{}t} \PY{o}{=} \PY{n}{Psi\PYZus{}mat}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{o}{.}\PY{n}{T}  \PY{c+c1}{\PYZsh{} dimension N\PYZus{}MC x 3M  }
+             \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{Psi\PYZus{}t}\PY{p}{,} \PY{n}{W\PYZus{}t}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} trim outliers for Q\PYZus{}RL}
+             \PY{n}{up\PYZus{}percentile\PYZus{}Q\PYZus{}RL} \PY{o}{=}  \PY{l+m+mi}{95} \PY{c+c1}{\PYZsh{} 95}
+             \PY{n}{low\PYZus{}percentile\PYZus{}Q\PYZus{}RL} \PY{o}{=} \PY{l+m+mi}{5} \PY{c+c1}{\PYZsh{} 5}
+             
+             \PY{n}{low\PYZus{}perc\PYZus{}Q\PYZus{}RL}\PY{p}{,} \PY{n}{up\PYZus{}perc\PYZus{}Q\PYZus{}RL} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{percentile}\PY{p}{(}\PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{n}{low\PYZus{}percentile\PYZus{}Q\PYZus{}RL}\PY{p}{,}\PY{n}{up\PYZus{}percentile\PYZus{}Q\PYZus{}RL}\PY{p}{]}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} print(\PYZsq{}t = \PYZpc{}s low\PYZus{}perc\PYZus{}Q\PYZus{}RL = \PYZpc{}s up\PYZus{}perc\PYZus{}Q\PYZus{}RL = \PYZpc{}s\PYZsq{} \PYZpc{} (t, low\PYZus{}perc\PYZus{}Q\PYZus{}RL, up\PYZus{}perc\PYZus{}Q\PYZus{}RL))}
+             
+             \PY{c+c1}{\PYZsh{} trim outliers in values of max\PYZus{}Q\PYZus{}star:}
+             \PY{n}{flag\PYZus{}lower} \PY{o}{=} \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{o}{.}\PY{n}{values} \PY{o}{\PYZlt{}} \PY{n}{low\PYZus{}perc\PYZus{}Q\PYZus{}RL}
+             \PY{n}{flag\PYZus{}upper} \PY{o}{=} \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{t}\PY{p}{]}\PY{o}{.}\PY{n}{values} \PY{o}{\PYZgt{}} \PY{n}{up\PYZus{}perc\PYZus{}Q\PYZus{}RL}
+             \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{flag\PYZus{}lower}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{low\PYZus{}perc\PYZus{}Q\PYZus{}RL}
+             \PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{flag\PYZus{}upper}\PY{p}{,}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{up\PYZus{}perc\PYZus{}Q\PYZus{}RL}
+             
+         \PY{n}{endtime} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Time Cost:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{endtime} \PY{o}{\PYZhy{}} \PY{n}{starttime}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{seconds}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Time Cost: 0.0989999771118164 seconds
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+D:\textbackslash{}application\textbackslash{}Anaconda3\textbackslash{}envs\textbackslash{}pyalgo\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}ipykernel\_launcher.py:21: FutureWarning: reshape is deprecated and will raise in a subsequent release. Please use .values.reshape({\ldots}) instead
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} plot both simulations}
+         \PY{n}{f}\PY{p}{,} \PY{n}{axarr} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{f}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{hspace}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{f}\PY{o}{.}\PY{n}{set\PYZus{}figheight}\PY{p}{(}\PY{l+m+mf}{8.0}\PY{p}{)}
+         \PY{n}{f}\PY{o}{.}\PY{n}{set\PYZus{}figwidth}\PY{p}{(}\PY{l+m+mf}{8.0}\PY{p}{)}
+         
+         \PY{n}{step\PYZus{}size} \PY{o}{=} \PY{n}{N\PYZus{}MC} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{10}
+         \PY{n}{idx\PYZus{}plot} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{step\PYZus{}size}\PY{p}{,} \PY{n}{N\PYZus{}MC}\PY{p}{,} \PY{n}{step\PYZus{}size}\PY{p}{)}
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{a\PYZus{}star}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)} 
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Optimal action \PYZdl{}a\PYZus{}t\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{star\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Q\PYZus{}RL}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)} 
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Q\PYZhy{}function \PYZdl{}Q\PYZus{}t\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{star\PYZcb{} (X\PYZus{}t, a\PYZus{}t)\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Q\PYZus{}star}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{idx\PYZus{}plot}\PY{p}{]}\PY{p}{)} 
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axarr}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Optimal Q\PYZhy{}function \PYZdl{}Q\PYZus{}t\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{star\PYZcb{} (X\PYZus{}t, a\PYZus{}t\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{star\PYZcb{})\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{QLBS\PYZus{}FQI\PYZus{}off\PYZus{}policy\PYZus{}summary\PYZus{}ATM\PYZus{}eta\PYZus{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{.png}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{eta}\PY{p}{)}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_59_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Compare the optimal action \(a_t^\star\left(X_t\right)\) and optimal
+Q-function with optimal action \(Q_t^\star\left(X_t,a_t^\star\right)\)
+given by Dynamic Programming and Reinforcement Learning.
+
+Plots of 1 path comparisons are given below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} plot a and a\PYZus{}star}
+         \PY{c+c1}{\PYZsh{} plot 1 path}
+         
+         \PY{n}{num\PYZus{}path} \PY{o}{=}  \PY{l+m+mi}{120} \PY{c+c1}{\PYZsh{} 240 \PYZsh{} 260 \PYZsh{}  300 \PYZsh{} 430 \PYZsh{}  510}
+         
+         \PY{c+c1}{\PYZsh{} Note that a from the DP method and a\PYZus{}star from the RL method are now identical by construction}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{a}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{num\PYZus{}path}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{DP Action}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{a\PYZus{}star}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{num\PYZus{}path}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RL Action}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Steps}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Optimal Action Comparison Between DP and RL}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_61_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Summary of the RL-based pricing with
+QLBS}\label{summary-of-the-rl-based-pricing-with-qlbs}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} QLBS option price}
+         \PY{n}{C\PYZus{}QLBS} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{Q\PYZus{}star}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} Q\PYZus{}RL \PYZsh{} }
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{       QLBS RL Option Pricing       }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Initial Stock Price:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{S0}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Drift of Stock:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{mu}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Volatility of Stock:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{sigma}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Risk\PYZhy{}free Rate:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{r}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Risk aversion parameter :}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{risk\PYZus{}lambda}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Strike:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{K}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}25s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Maturity:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{M}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}26s}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The QLBS Put Price 1 :}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{C\PYZus{}QLBS}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}\PYZhy{}26s}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Black\PYZhy{}Sholes Put Price:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bs\PYZus{}put}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} \PYZsh{} plot one path}
+         \PY{c+c1}{\PYZsh{} plt.plot(C\PYZus{}QLBS.T.iloc[:,[200]])}
+         \PY{c+c1}{\PYZsh{} plt.xlabel(\PYZsq{}Time Steps\PYZsq{})}
+         \PY{c+c1}{\PYZsh{} plt.title(\PYZsq{}QLBS RL Option Price\PYZsq{})}
+         \PY{c+c1}{\PYZsh{} plt.show()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+---------------------------------
+       QLBS RL Option Pricing       
+---------------------------------
+
+Initial Stock Price:      100
+Drift of Stock:           0.05
+Volatility of Stock:      0.15
+Risk-free Rate:           0.03
+Risk aversion parameter : 0.001
+Strike:                   100
+Maturity:                 1
+
+The QLBS Put Price 1 :    4.7040
+
+Black-Sholes Put Price:   4.5296
+
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+         
+         \PY{n}{part5} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{C\PYZus{}QLBS}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{submissions}\PY{p}{[}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{part5}
+         \PY{n}{grading}\PY{o}{.}\PY{n}{submit}\PY{p}{(}\PY{n}{COURSERA\PYZus{}EMAIL}\PY{p}{,} \PY{n}{COURSERA\PYZus{}TOKEN}\PY{p}{,} \PY{n}{assignment\PYZus{}key}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,}\PY{n}{all\PYZus{}parts}\PY{p}{,}\PY{n}{submissions}\PY{p}{)}
+         \PY{n}{C\PYZus{}QLBS}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} GRADED PART (DO NOT EDIT) \PYZsh{}\PYZsh{}\PYZsh{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Submission successful, please check on the coursera grader page for the status
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} 4.703966945077183
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{\PYZsh{} add here calculation of different MC runs (6 repetitions of action randomization)}
+         
+         \PY{c+c1}{\PYZsh{} on\PYZhy{}policy values}
+         \PY{n}{y1\PYZus{}onp} \PY{o}{=} \PY{l+m+mf}{5.0211} \PY{c+c1}{\PYZsh{} 4.9170}
+         \PY{n}{y2\PYZus{}onp} \PY{o}{=} \PY{l+m+mf}{4.7798} \PY{c+c1}{\PYZsh{} 7.6500}
+         
+         \PY{c+c1}{\PYZsh{} QLBS\PYZus{}price\PYZus{}on\PYZus{}policy = 4.9004 +/\PYZhy{} 0.1206}
+         
+         \PY{c+c1}{\PYZsh{} these are the results for noise eta = 0.15}
+         \PY{c+c1}{\PYZsh{} p1 = np.array([5.0174, 4.9249, 4.9191, 4.9039, 4.9705, 4.6216 ])}
+         \PY{c+c1}{\PYZsh{} p2 = np.array([6.3254, 8.6733, 8.0686, 7.5355, 7.1751, 7.1959 ])}
+         
+         \PY{n}{p1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{5.0485}\PY{p}{,} \PY{l+m+mf}{5.0382}\PY{p}{,} \PY{l+m+mf}{5.0211}\PY{p}{,} \PY{l+m+mf}{5.0532}\PY{p}{,} \PY{l+m+mf}{5.0184}\PY{p}{]}\PY{p}{)}
+         \PY{n}{p2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{4.7778}\PY{p}{,} \PY{l+m+mf}{4.7853}\PY{p}{,} \PY{l+m+mf}{4.7781}\PY{p}{,}\PY{l+m+mf}{4.7805}\PY{p}{,} \PY{l+m+mf}{4.7828}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} results for eta = 0.25}
+         \PY{c+c1}{\PYZsh{} p3 = np.array([4.9339, 4.9243, 4.9224, 5.1643, 5.0449, 4.9176 ])}
+         \PY{c+c1}{\PYZsh{} p4 = np.array([7.7696,8.1922, 7.5440,7.2285, 5.6306, 12.6072])}
+         
+         \PY{n}{p3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{5.0147}\PY{p}{,} \PY{l+m+mf}{5.0445}\PY{p}{,} \PY{l+m+mf}{5.1047}\PY{p}{,} \PY{l+m+mf}{5.0644}\PY{p}{,} \PY{l+m+mf}{5.0524}\PY{p}{]}\PY{p}{)}
+         \PY{n}{p4} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{4.7842}\PY{p}{,}\PY{l+m+mf}{4.7873}\PY{p}{,} \PY{l+m+mf}{4.7847}\PY{p}{,} \PY{l+m+mf}{4.7792}\PY{p}{,} \PY{l+m+mf}{4.7796}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} eta = 0.35 }
+         \PY{c+c1}{\PYZsh{} p7 = np.array([4.9718, 4.9528, 5.0170, 4.7138, 4.9212, 4.6058])}
+         \PY{c+c1}{\PYZsh{} p8 = np.array([8.2860, 7.4012, 7.2492, 8.9926, 6.2443, 6.7755])}
+         
+         \PY{n}{p7} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{5.1342}\PY{p}{,} \PY{l+m+mf}{5.2288}\PY{p}{,} \PY{l+m+mf}{5.0905}\PY{p}{,} \PY{l+m+mf}{5.0784}\PY{p}{,} \PY{l+m+mf}{5.0013} \PY{p}{]}\PY{p}{)}
+         \PY{n}{p8} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{4.7762}\PY{p}{,} \PY{l+m+mf}{4.7813}\PY{p}{,}\PY{l+m+mf}{4.7789}\PY{p}{,} \PY{l+m+mf}{4.7811}\PY{p}{,} \PY{l+m+mf}{4.7801}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} results for eta = 0.5}
+         \PY{c+c1}{\PYZsh{} p5 = np.array([4.9446, 4.9894,6.7388, 4.7938,6.1590, 4.5935 ])}
+         \PY{c+c1}{\PYZsh{} p6 = np.array([7.5632, 7.9250, 6.3491, 7.3830, 13.7668, 14.6367 ])}
+         
+         \PY{n}{p5} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{3.1459}\PY{p}{,} \PY{l+m+mf}{4.9673}\PY{p}{,} \PY{l+m+mf}{4.9348}\PY{p}{,} \PY{l+m+mf}{5.2998}\PY{p}{,} \PY{l+m+mf}{5.0636} \PY{p}{]}\PY{p}{)}
+         \PY{n}{p6} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{4.7816}\PY{p}{,} \PY{l+m+mf}{4.7814}\PY{p}{,} \PY{l+m+mf}{4.7834}\PY{p}{,} \PY{l+m+mf}{4.7735}\PY{p}{,} \PY{l+m+mf}{4.7768}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} print(np.mean(p1), np.mean(p3), np.mean(p5))}
+         \PY{c+c1}{\PYZsh{} print(np.mean(p2), np.mean(p4), np.mean(p6))}
+         \PY{c+c1}{\PYZsh{} print(np.std(p1), np.std(p3), np.std(p5))}
+         \PY{c+c1}{\PYZsh{} print(np.std(p2), np.std(p4), np.std(p6))}
+         
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.15}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.35}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{]}\PY{p}{)}
+         \PY{n}{y1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p1}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p3}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p7}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p5}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{y2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p2}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p4}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p8}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{p6}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{y\PYZus{}err\PYZus{}1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p1}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p3}\PY{p}{)}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p7}\PY{p}{)}\PY{p}{,}  \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p5}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{y\PYZus{}err\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p2}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p4}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p8}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{p6}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} plot it }
+         \PY{n}{f}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{f}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{hspace}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{f}\PY{o}{.}\PY{n}{set\PYZus{}figheight}\PY{p}{(}\PY{l+m+mf}{6.0}\PY{p}{)}
+         \PY{n}{f}\PY{o}{.}\PY{n}{set\PYZus{}figwidth}\PY{p}{(}\PY{l+m+mf}{8.0}\PY{p}{)}
+         
+         \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y1}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{y1\PYZus{}onp}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{textstr} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{On\PYZhy{}policy value = }\PY{l+s+si}{\PYZpc{}2.2f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{y1\PYZus{}onp}\PY{p}{)}
+         \PY{n}{props} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{boxstyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{round}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wheat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}                      
+         \PY{c+c1}{\PYZsh{} place a text box in upper left in axes coords}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{,} \PY{n}{textstr}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{11}\PY{p}{,}\PY{n}{transform}\PY{o}{=}\PY{n}{ax}\PY{o}{.}\PY{n}{transAxes}\PY{p}{,} \PY{n}{verticalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox}\PY{o}{=}\PY{n}{props}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean option price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Noise level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y2}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{n}{y2\PYZus{}onp}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{textstr} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{On\PYZhy{}policy value = }\PY{l+s+si}{\PYZpc{}2.2f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{y2\PYZus{}onp}\PY{p}{)}
+         \PY{n}{props} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{boxstyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{round}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wheat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}                      
+         \PY{c+c1}{\PYZsh{} place a text box in upper left in axes coords}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.35}\PY{p}{,} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{textstr}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{11}\PY{p}{,}\PY{n}{transform}\PY{o}{=}\PY{n}{ax}\PY{o}{.}\PY{n}{transAxes}\PY{p}{,} \PY{n}{verticalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bbox}\PY{o}{=}\PY{n}{props}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean option price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Noise level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y\PYZus{}err\PYZus{}1}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Std of option price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Noise level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y\PYZus{}err\PYZus{}2}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Std of option price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Noise level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{f}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean and std of option price vs noise level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Option\PYZus{}price\PYZus{}vs\PYZus{}noise\PYZus{}level.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_65_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
